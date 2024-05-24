@@ -1,0 +1,13 @@
+@font-face {
+    font-family: "Inter Tight";
+    src: url("../fonts/InterTight-VariableFont_wght.ttf") format('truetype');
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Inter Tight";
+    src: url("../fonts/InterTight-Italic-VariableFont_wght.ttf") format('truetype');
+    font-style: italic;
+    font-weight: normal;
+}

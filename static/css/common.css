@@ -1,0 +1,56 @@
+@import "fonts.css";
+
+body, select, option, input, button {
+    font-family: "Inter Tight";
+}
+
+body {
+    font-size: 16px;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+fieldset {
+    border-color: black;
+}
+
+select {
+    border: 0;
+    outline: 2px solid #808080;
+}
+
+select:hover {
+    background-color: #e7e7e7;
+}
+
+select:focus {
+    outline-color: #000000;
+}
+
+.main {
+    /*position: relative;*/
+    /*top: 20px;*/
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    width: 600px;
+
+    margin: 20px auto;
+    padding: 20px;
+
+    outline: 2px solid black;
+}
+
+.main > * {
+    width: 100%;
+}
