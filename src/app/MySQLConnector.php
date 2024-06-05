@@ -3,20 +3,23 @@
 
 namespace App;
 
+$path = $_SERVER['DOCUMENT_ROOT'];
+
+include_once $path.'/src/config.php';
+
 
 class MySQLConnector {
     private static string $host = 'localhost';
-    private static string $dbname = 'db_my_calendar';
-    private static string $username = 'admin';
-    private static string $password = 'admin123';
 
     private \PDO $connection;
 
     public function __construct() {
+        $data = get_db_auth();
+
         $this->connection = new \PDO(
-            'mysql:host=' . self::$host . ';dbname=' . self::$dbname,
-            self::$username,
-            self::$password,
+            'mysql:host=' . self::$host . ';dbname=' . $data['db'],
+            $data['username'],
+            $data['password'],
         );
     }
 
