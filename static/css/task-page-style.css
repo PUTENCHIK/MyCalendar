@@ -1,0 +1,44 @@
+@import "common.css";
+
+fieldset.task-page {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+input[type="time"] {
+    height: 18px;
+}
+
+input[type="text"] {
+    width: 450px;
+}
+
+textarea {
+    min-width: 450px;
+    max-width: 450px;
+    min-height: 100px;
+    max-height: 200px;
+}
+
+.inputs-box {
+    display: table;
+    border-spacing: 10px;
+}
+
+.inputs-box > label {
+    display: table-row;
+}
+
+.inputs-box > label > * {
+    display: table-cell;
+}
+
+.inputs-box > label > span:first-child {
+    margin-right: 10px;
+}
+
+.inputs-box > label > span {
+    text-align: right;
+    vertical-align: top;
+}

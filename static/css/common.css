@@ -1,10 +1,14 @@
 @import "fonts.css";
 
-body, select, option, input, button {
+body, select, option, input, button, textarea {
     font-family: "Inter Tight";
 }
 
 body {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
     font-size: 16px;
 }
 
@@ -18,39 +22,125 @@ h2 {
     font-weight: bolder;
 }
 
+p.text {
+    text-align: center;
+}
+
+a:visited {
+    color: blue;
+}
+
 fieldset {
     border-color: black;
 }
 
-select {
+input[type="text"], select, textarea {
     border: 0;
     outline: 2px solid #808080;
 }
 
-select:hover {
+input[type="text"]:hover, select:hover {
     background-color: #e7e7e7;
 }
 
-select:focus {
+input[type="text"]:focus, select:focus {
     outline-color: #000000;
 }
 
-.main {
-    /*position: relative;*/
-    /*top: 20px;*/
+input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+}
 
+img.icon {
+    width: 32px;
+}
+
+button.button {
+    display: inline-block;
+    height: 40px;
+
+    padding: 0 20px;
+    border: 0;
+    outline: 0;
+    border-radius: 20px;
+}
+
+button.button:hover {
+    background-color: #dedede;
+}
+
+button.button:focus {
+    outline: 1px solid #000000;
+}
+
+button.button.primary {
+    background-color: #2c41e2;
+    color: #ffffff;
+}
+
+button.button.primary:hover {
+    background-color: #162de0;
+}
+
+button.link {
+    background: transparent;
+    padding: 0;
+    border: 0;
+    color: #2c41e2;
+}
+
+button.link:hover {
+    text-decoration: underline;
+}
+
+.main {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
 
-    width: 600px;
-
+    width: 800px;
     margin: 20px auto;
     padding: 20px;
 
     outline: 2px solid black;
 }
 
-.main > * {
+.main > form {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
     width: 100%;
+    margin-bottom: 0;
+}
+
+.main > form > * {
+    width: 100%;
+}
+
+.buttons-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    width: 100%;
+    margin-top: 20px;
+}
+
+.buttons-box > :not(:last-child) {
+    margin-right: 20px;
+}
+
+.error-row {
+    display: table-row;
+}
+.error-block {
+    display: table-cell;
+
+    padding: 3px 10px;
+    font-size: 12px;
+    border-radius: 5px;
+    background-color: #ff5959;
+    color: #ffffff;
 }
