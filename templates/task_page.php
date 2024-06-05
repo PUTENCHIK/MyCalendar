@@ -26,25 +26,19 @@ if (!isset($_SESSION['app'])) {
     $_SESSION['app'] = new App();
 }
 
-//session_destroy();
-//$_SESSION['app'] = new App();
-
 $app = $_SESSION['app'];
-
-//print_r($app->info());
 $app->check_state(AppStates::$adding);
-$db = new MySQLConnector();
 
 $current_task = $app->getCurrentTask();
 $title = $app->is_state(AppStates::$adding) ? 'Новая задача' : "Задача #$current_task";
 $error = empty($app->getErrors()) ? null : $app->getErrors()[0];
 $inputs = $app->getInputs();
 
-//print_r($app->getState());
-//print_r($app->getCurrentTask());
-//header('Content-Type: text/plain');
-//print_r($app->getErrors());
-//exit;
+try {
+    $db = new MySQLConnector();
+} catch (\Exception $e) {
+	$db = null;
+}
 
 ?>
 
@@ -57,6 +51,8 @@ $inputs = $app->getInputs();
     </head>
     <body>
         <div class="main">
+            <?php if (!is_null($db)): ?>
+
 			<form method="post" action="../logic/task_page_logic.php">
 				<h1>Мой календарь</h1>
 				<fieldset class="task-page">
@@ -117,6 +113,14 @@ $inputs = $app->getInputs();
 					<button class="button primary" name="save" value="yes">Сохранить</button>
 				</div>
 			</form>
+            <?php else: ?>
+
+				<p>
+					Не удалось подключиться к БД. Проверьте развёрнутую БД или измените конфигурацию в классе
+					src/app/MySQLConnector. Модель базы данных находится в static/sql/my_calendar.sql
+				</p>
+
+            <?php endif ?>
         </div>
     </body>
 </html>

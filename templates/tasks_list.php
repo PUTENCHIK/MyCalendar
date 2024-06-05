@@ -8,7 +8,6 @@ use App\App;
 use App\AppStates;
 use App\MySQLConnector;
 use App\CalendarFilters;
-use function App\check_if;
 use function App\select_if;
 use function App\set_old_value;
 
@@ -26,21 +25,18 @@ if (!isset($_SESSION['app'])) {
     $_SESSION['app'] = new App();
 }
 
-//session_destroy();
-//$_SESSION['app'] = new App();
-
 $app = $_SESSION['app'];
-
 $app->check_state(AppStates::$list);
-//$app->clear_inputs();
-
-$db = new MySQLConnector();
-$all_tasks = $db->get_tasks();
 $interval = $app->getDateInterval();
-$tasks = $db->get_tasks($app->getFilter(), $interval['start'], $interval['end']);
-$types = $db->get_db_types();
 
-//print_r($app->getDateInterval());
+try {
+    $db = new MySQLConnector();
+    $all_tasks = $db->get_tasks();
+    $tasks = $db->get_tasks($app->getFilter(), $interval['start'], $interval['end']);
+    $types = $db->get_db_types();
+} catch (\Exception $e) {
+    $db = null;
+}
 
 ?>
 
@@ -53,6 +49,8 @@ $types = $db->get_db_types();
     </head>
     <body>
         <div class="main">
+			<?php if (!is_null($db)): ?>
+
 			<form method="post" action="../logic/tasks_list_logic.php" name="main-form">
 				<h1>Мой календарь</h1>
 				<?php if (!empty($all_tasks)): ?>
@@ -143,6 +141,14 @@ $types = $db->get_db_types();
 					<button class="button primary" name="add-task" value="yes">Добавить задачу</button>
 				</div>
 			</form>
+			<?php else: ?>
+
+			<p>
+				Не удалось подключиться к БД. Проверьте развёрнутую БД или измените конфигурацию в классе
+				src/app/MySQLConnector. Модель базы данных находится в static/sql/my_calendar.sql
+			</p>
+
+			<?php endif ?>
 		</div>
 		<script src="../static/js/calendar-button.js"></script>
 		<script src="../static/js/submit-from.js"></script>
