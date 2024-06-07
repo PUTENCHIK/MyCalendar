@@ -117,7 +117,7 @@ try {
 
 				<p>
 					Не удалось подключиться к БД. Проверьте развёрнутую БД или измените конфигурацию в классе
-					src/app/MySQLConnector. Модель базы данных находится в static/sql/my_calendar.sql
+					src/config.php. Модель базы данных находится в static/sql/my_calendar.sql
 				</p>
 
             <?php endif ?>
